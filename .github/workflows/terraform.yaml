@@ -2,12 +2,13 @@ name: Terraform Deploy
 
 on:
   push:
-    paths:
-      - 'Src/*'  # Trigger only when Python files change inside the src folder
-      - 'Dockerfile' 
     branches:
       - main
+    paths-ignore:
+      - 'Src/**'       # Ignore changes in Src directory
+      - 'Dockerfile'  # Ignore changes in Dockerfile
   workflow_dispatch:
+
 
 jobs:
   terraform:
