@@ -3,11 +3,12 @@
 
 We will deploy a Dockerized Flask application on AWS EC2 using GitHub Actions, adhering to the core DevOps principle of Continuous Integration and Continuous Deployment (CI/CD). This approach will automate the build and deployment process with every code change.
 Whenever there is an update to the Python code, dependencies, or Dockerfile, the GitHub Actions workflow will automatically build a fresh Docker image, push it to AWS ECR, and deploy the updated container. The new version of the application will be accessible through the public IP of the EC2 instance on port 80.
-
 ![GitHub Actions](https://img.shields.io/github/actions/workflow/status/aditya12-g/flaskapp-deploy-using-githubactions/deploy.yml?branch=main)
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![Flask](https://img.shields.io/badge/Flask-2.0%2B-green)
 ![Terraform](https://img.shields.io/badge/Terraform-1.0%2B-purple)
+
+![image
 
 ---
 
