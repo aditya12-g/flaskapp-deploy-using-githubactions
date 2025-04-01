@@ -11,7 +11,8 @@ Whenever there is an update to the Python code, dependencies, or Dockerfile, the
 ![Flask](https://img.shields.io/badge/Flask-2.0%2B-green)
 ![Terraform](https://img.shields.io/badge/Terraform-1.0%2B-purple)
 
-![image
+![image alt](https://github.com/aditya12-g/flaskapp-deploy-using-githubactions/blob/main/Screenshot%20(24).png?raw=true)
+
 
 ---
 
