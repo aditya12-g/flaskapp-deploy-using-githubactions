@@ -1,12 +1,12 @@
-name: Terraform Deploy
+name: Build and Push Docker Image to ECR
 
 on:
-  # push:
-  #   branches:
-  #     - main
-  #   paths-ignore:
-  #     - 'Src/**'       # Ignore changes in Src directory
-  #     - 'Dockerfile'  # Ignore changes in Dockerfile
+  push:
+    paths:
+      - 'Src/*'  # Trigger only when Python files change inside the src folder
+      - 'Dockerfile' 
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
