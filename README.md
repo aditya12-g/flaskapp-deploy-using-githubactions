@@ -36,7 +36,7 @@ This project automates the deployment of a Flask application using:
 flaskapp-deploy-using-githubactions/
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml           # GitHub Actions workflow for CI/CD
+│       └── deploy.yml        # GitHub Actions workflow for CI/CD
 ├── src/
 │   ├── app.py                   # Main Flask application
 │   ├── requirements.txt         # Python dependencies
