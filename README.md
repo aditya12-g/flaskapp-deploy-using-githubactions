@@ -1,4 +1,4 @@
-# flaskapp-deploy-using-githubactions
+
 # 🚀 Flask App Deployment using GitHub Actions & Terraform
 
 ![GitHub Actions](https://img.shields.io/github/actions/workflow/status/aditya12-g/flaskapp-deploy-using-githubactions/deploy.yml?branch=main)
@@ -35,7 +35,9 @@ This project automates the deployment of a Flask application using:
 
 ### `.github/`
 - `workflows/`
-  - `deploy.yml` → GitHub Actions workflow for CI/CD
+  - `build-deploy.yaml` → GitHub Actions workflow for CI/CD
+  - terraform.yaml      → for creating infrastructure 
+  - terraform-destroy.yaml → for destroying infrastructure 
 
 ### `src/`
 - `app.py` → Main Flask application  
@@ -60,6 +62,7 @@ This project automates the deployment of a Flask application using:
 ---
 
 ## 🚀 Deployment Guide
+This is for ony manual setup for automation use github workflows'
 
 ### 1️⃣ Prerequisites
 - **AWS Account** with IAM roles set up  
@@ -73,3 +76,47 @@ This project automates the deployment of a Flask application using:
 ```sh
 git clone https://github.com/aditya12-g/flaskapp-deploy-using-githubactions.git
 cd flaskapp-deploy-using-githubactions
+
+### 3️⃣ Infrastructure Provisioning with Terraform
+---sh
+terraform init
+terraform plan
+terraform apply
+
+### 4️⃣ Build & Push Docker Image to AWS ECR
+aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <account-id>.dkr.ecr.<region>.amazonaws.com
+docker build -t flaskapp .
+docker tag flaskapp:latest <account-id>.dkr.ecr.<region>.amazonaws.com/flaskapp:latest
+docker push <account-id>.dkr.ecr.<region>.amazonaws.com/flaskapp:latest
+
+### 5️⃣ Deploy on AWS EC2
+ssh -i <your-key.pem> ec2-user@<ec2-ip>
+docker pull <account-id>.dkr.ecr.<region>.amazonaws.com/flaskapp:latest
+docker run -d -p 80:5000 <account-id>.dkr.ecr.<region>.amazonaws.com/flaskapp:latest
+(The app will be accessible via the EC2 instance's public IP.)
+
+🔄 CI/CD Pipeline (GitHub Actions)
+The GitHub Actions workflow (deploy.yml) automates:
+
+Code Checkout & Dependencies Installation
+
+Testing & Linting
+
+Docker Build & Push to AWS ECR
+
+Remote Deployment on EC2
+
+🔧 Required GitHub Secrets:
+AWS_ACCESS_KEY_ID
+
+AWS_SECRET_ACCESS_KEY
+
+AWS_REGION
+
+ECR_REPOSITORY
+
+EC2_INSTANCE_IP
+
+EC2_SSH_PRIVATE_KEY
+
+
